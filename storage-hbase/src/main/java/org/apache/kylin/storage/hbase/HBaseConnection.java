@@ -154,6 +154,17 @@ public class HBaseConnection {
         String hbaseClusterFs = kylinConf.getHBaseClusterFs();
         if (StringUtils.isNotEmpty(hbaseClusterFs)) {
             conf.set(FileSystem.FS_DEFAULT_NAME_KEY, hbaseClusterFs);
+        } else {
+            FileSystem workingFS = null;
+            try {
+                workingFS = HadoopUtil.getWorkingFileSystem(conf);
+            } catch (IOException e) {
+                logger.error("failed to get working filesystem, skip it", e);
+            }
+
+            if (workingFS != null) {
+                conf.set(FileSystem.FS_DEFAULT_NAME_KEY, workingFS.toString());
+            }
         }
 
         // https://issues.apache.org/jira/browse/KYLIN-953

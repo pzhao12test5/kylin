@@ -724,28 +724,32 @@ abstract public class KylinConfigBase implements Serializable {
     // SOURCE.JDBC
     // ============================================================================
 
-    public String getJdbcConnectionUrl() {
+    public String getJdbcSourceConnectionUrl() {
         return getOptional("kylin.source.jdbc.connection-url");
     }
 
-    public String getJdbcDriver() {
+    public String getJdbcSourceDriver() {
         return getOptional("kylin.source.jdbc.driver");
     }
 
-    public String getJdbcDialect() {
+    public String getJdbcSourceDialect() {
         return getOptional("kylin.source.jdbc.dialect");
     }
 
-    public String getJdbcUser() {
+    public String getJdbcSourceUser() {
         return getOptional("kylin.source.jdbc.user");
     }
 
-    public String getJdbcPass() {
+    public String getJdbcSourcePass() {
         return getOptional("kylin.source.jdbc.pass");
     }
 
     public String getSqoopHome() {
         return getOptional("kylin.source.jdbc.sqoop-home");
+    }
+
+    public String getFieldDelimiter() {
+        return getOptional("kylin.source.jdbc.field-delimiter", "|");
     }
 
     // ============================================================================
